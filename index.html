@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Profile - محمد حسانين</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html, body{height:100%;width:100%;}
+body{
+  font-family:'Cairo',sans-serif;
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+  perspective:1200px;
+  background:linear-gradient(-45deg,#0b0f12,#0f2027,#203a43,#1a2a3c);
+  background-size:1200% 1200%;
+  animation:bgMove 60s ease infinite;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+@keyframes bgMove{
+0%{background-position:0% 50%}
+25%{background-position:50% 100%}
+50%{background-position:100% 50%}
+75%{background-position:50% 0%}
+100%{background-position:0% 50%}
+}
+
+/* بانر */
+.banner{
+width:100%;
+height:35vh;
+min-height:250px;
+background:url("banner.gif") center/cover no-repeat;
+border-bottom:5px solid #00bfff;
+box-shadow:0 0 100px rgba(0,191,255,0.7);
+position:relative;
+z-index:1;
+}
+
+/* بطاقة التعريف */
+.card{
+width:90%;
+max-width:700px;
+margin-top:-5vh;
+background:linear-gradient(145deg,#0c1c2c,#1a2a3c);
+backdrop-filter:blur(40px);
+padding:100px 30px 30px 30px; /* رفع padding-top لتفادي تداخل النص مع avatar */
+border-radius:30px;
+box-shadow:0 0 150px rgba(0,191,255,.5);
+transition:transform 0.6s ease, box-shadow 0.6s ease;
+display:flex;
+flex-direction:column;
+align-items:center;
+position:relative;
+z-index:2;
+}
+
+/* Avatar + Name */
+.avatarContainer{
+position:absolute;
+top:-60px; /* يعلق الصورة فوق الكارد */
+left:50%;
+transform:translateX(-50%);
+display:flex;
+flex-direction:column;
+align-items:center;
+z-index:3;
+}
+.avatar{
+width:25vw;
+max-width:220px;
+height:auto;
+border-radius:50%;
+border:7px solid #00bfff;
+box-shadow:0 0 80px #00bfff;
+transition:transform 0.5s ease, box-shadow 0.5s ease;
+}
+.avatar:hover{
+transform:scale(1.15);
+box-shadow:0 0 100px #00ffff;
+}
+.name{
+font-size:5vw;
+max-font-size:42px;
+margin-top:1.5vh;
+text-shadow:0 0 35px #00bfff,0 0 60px #00ffff;
+}
+
+/* Bio */
+.bio{
+opacity:0.95;
+line-height:1.8;
+text-align:center;
+font-size:4.5vw;
+max-font-size:18px;
+padding:0 10px;
+margin-top:10px; /* فاصلة بسيطة عن الاسم */
+margin-bottom:3vh;
+min-height:50px; /* يمنع تداخل النص مع الاسم */
+overflow-wrap: break-word; /* يكسر الكلمات الطويلة */
+}
+
+/* Divider */
+.divider{
+margin:3vh auto;
+width:90%;
+height:3px;
+background:linear-gradient(to right,transparent,#00bfff,transparent);
+border-radius:2px;
+}
+
+/* Message */
+.message{
+padding:20px;
+background:rgba(0,0,0,0.35);
+border-radius:18px;
+line-height:1.9;
+margin-top:3vh;
+font-size:4.5vw;
+max-font-size:16px;
+text-align:center;
+color:#c0e0ff;
+backdrop-filter:blur(12px);
+min-height:70px; /* مساحة أكبر لتفادي تداخل النص */
+overflow-wrap: break-word;
+word-break:break-word;
+}
+
+/* Music player */
+.musicPlayer{
+margin-top:4vh;
+padding:20px;
+border-radius:25px;
+background:linear-gradient(135deg,#0a0f1a,#1a2230);
+box-shadow:0 0 80px rgba(0,191,255,.4);
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:15px;
+width:90%;
+max-width:400px;
+}
+.playBtn{
+background:#00bfff;
+border:none;
+width:60px;
+height:60px;
+border-radius:50%;
+cursor:pointer;
+box-shadow:0 0 30px #00bfff,0 0 60px #00ffff;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s;
+}
+.playBtn:hover{transform:scale(1.2);}
+.bar{
+height:6px;
+background:#333;
+border-radius:10px;
+margin-top:12px;
+overflow:hidden;
+width:100%;
+}
+.progress{height:6px;width:0%;background:#00bfff;}
+
+/* Socials */
+.socials{
+margin-top:4vh;
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+.socials a{
+color:#00bfff;
+text-decoration:none;
+font-size:5vw;
+max-font-size:26px;
+display:flex;
+align-items:center;
+gap:10px;
+transition:.3s;
+}
+.socials a:hover{color:white;transform:scale(1.25);}
+.socials i{font-size:5vw;max-font-size:26px;}
+
+/* Footer */
+footer{
+margin-top:4vh;
+opacity:.85;
+font-size:4vw;
+max-font-size:14px;
+}
+
+/* Glow shapes */
+.glowShape{
+position:absolute;
+width:10px;
+height:10px;
+background:rgba(0,191,255,0.7);
+animation:floatShape 6s linear infinite;
+border-radius:50%;
+box-shadow:0 0 12px #00bfff,0 0 25px #00ffff;
+}
+@keyframes floatShape{
+0%{transform:translateY(0) rotate(0deg);opacity:1;}
+50%{transform:translateY(-250px) rotate(180deg);opacity:0.7;}
+100%{transform:translateY(-500px) rotate(360deg);opacity:0;}
+}
+
+/* Responsive */
+@media screen and (max-width:768px){
+.card{padding:120px 25px 25px 25px;}
+.bio,.message{font-size:5vw;}
+.name{font-size:7vw;}
+.musicPlayer{max-width:90%;}
+.playBtn{width:18vw;height:18vw;}
+.socials a{font-size:6vw;}
+footer{font-size:4.5vw;}
+}
+</style>
+</head>
+<body>
+
+<div class="banner"></div>
+
+<div class="card">
+
+<div class="avatarContainer">
+<img src="avatar.png" class="avatar">
+<div class="name">محمد حسانين</div>
+<div class="bio">
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="message" id="text"></div>
+<div class="divider"></div>
+
+<div class="musicPlayer">
+<button class="playBtn" onclick="toggleMusic()">
+<svg id="playIcon" width="24" height="24" viewBox="0 0 24 24" fill="white">
+<polygon points="5,3 19,12 5,21"></polygon>
+</svg>
+</button>
+<div class="bar"><div class="progress" id="progress"></div></div>
+<audio id="player" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div class="socials">
+  <a href="https://www.facebook.com/share/184iB3Tj6j/" target="_blank">
+    <i class="fab fa-facebook"></i>Facebook
+  </a>
+  <a href="https://www.instagram.com/albrecht_godwin?igsh=MXhiYmVycGRiMzIxdQ==" target="_blank">
+    <i class="fab fa-instagram"></i>Instagram
+  </a>
+  <a href="https://www.tiktok.com/@aphextwin926?_r=1&_t=ZS-94bJkE7xaB2" target="_blank">
+    <i class="fab fa-tiktok"></i>TikTok
+  </a>
+</div>
+  
+<footer>
+  إهداء من Amr Ayman<br>
+  جميع الحقوق محفوظة له وللفريق Global X
+</footer>
+</div>
+
+<script>
+const text=`I use the internet to hint at my rich inner world`;
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("text").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,40);}
+}
+type();
+
+/* الموسيقى */
+const player=document.getElementById("player");
+const progress=document.getElementById("progress");
+const btn=document.getElementById("playIcon");
+function toggleMusic(){
+if(player.paused){
+player.play();
+btn.innerHTML=`<rect x="6" y="4" width="4" height="16" fill="white"/>
+<rect x="14" y="4" width="4" height="16" fill="white"/>`;
+}else{
+player.pause();
+btn.innerHTML=`<polygon points="5,3 19,12 5,21" fill="white"/>`;
+}
+}
+player.ontimeupdate=()=>{let p=(player.currentTime/player.duration)*100;progress.style.width=p+"%";};
+
+/* Glow shapes */
+setInterval(()=>{
+let s=document.createElement("div");
+s.className="glowShape";
+s.style.left=Math.random()*100+"%";
+s.style.top=Math.random()*100+"%";
+s.style.width=(6+Math.random()*12)+"px";
+s.style.height=(6+Math.random()*12)+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),6000);
+},400);
+
+/* Click particles */
+document.addEventListener("click",(e)=>{
+for(let i=0;i<12;i++){
+let p=document.createElement("div");
+p.className="particle";
+p.style.left=e.clientX+"px";
+p.style.top=e.clientY+"px";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),700);
+}
+});
+</script>
+
+</body>
+</html>
